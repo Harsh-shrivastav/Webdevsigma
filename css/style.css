@@ -35,3 +35,10 @@ p + h3 {
 div > input {
     background-color: darkgray;
 }
+input[type="text"] {
+    color: wheat;
+}
+
+input[type="password"] {
+    color: lightgray;
+}
