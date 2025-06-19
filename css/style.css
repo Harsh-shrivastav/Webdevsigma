@@ -32,3 +32,6 @@ p + h3 {
 .upvote + button {
     background-color: aquamarine;
 }
+div > input {
+    background-color: darkgray;
+}
