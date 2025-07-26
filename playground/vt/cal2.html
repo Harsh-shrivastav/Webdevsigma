@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Calculator</title>
+    <style>
+       * { 
+        background-color: rgb(77, 27, 126);
+       }
+        .calculator {
+            width: 250px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.482);
+            border: 1px solid black;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .display {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .button {
+            width: 55px;
+            height: 40px;
+            font-size: 18px;
+            border: rgba(2, 2, 2, 0.666);
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="T1">
+    <input type="text" id="T2">
+    <input type="text" id="T3" disabled>
+    <button onclick="fun01()">Add</button>
+    <button onclick="fun02()">Subtract</button>
+    <button onclick="fun03()">Multiply</button>
+    <button onclick="fun04()">Divide</button>
+    <button onclick="fun05()">Factorial</button>
+    <button onclick="fun06()">Prime</button>
+
+    <script>
+        let S1, S2, S3, S4;
+        const fun01 = () => {
+            let a = document.getElementById('T1').value;
+            let b = document.getElementById('T2').value;
+            let c = parseFloat(a) + parseFloat(b);
+            document.getElementById('T3').value = c;
+        };
+        const fun02 = () => {
+            let a = document.getElementById('T1').value;
+            let b = document.getElementById('T2').value;
+            let c = parseFloat(a) - parseFloat(b);
+            document.getElementById('T3').value = c;
+        };
+        const fun03 = () => {
+            let a = document.getElementById('T1').value;
+            let b = document.getElementById('T2').value;
+            let c = parseFloat(a) * parseFloat(b);
+            document.getElementById('T3').value = c;
+        };
+        const fun04 = () => {
+            let a = document.getElementById('T1').value
+            let b = document.getElementById('T2').value;
+            if (b == 0) {
+                alert("Division by zero is not allowed.");
+                return;
+            }
+            let c = parseFloat(a) / parseFloat(b);
+            document.getElementById('T3').value = c;
+        };
+        const fun05 = () => {
+            let a = document.getElementById('T1').value;
+            let c = 1;
+            for (let i = 1; i <= parseInt(a); i++) {
+                c *= i;
+            }
+            document.getElementById('T3').value = c;
+        };
+        const fun06 = () => {
+            let a = document.getElementById('T1').value
+            let isPrime = true;
+            if (a < 2) {            
+                isPrime = false;
+            } else {
+                for (let i = 2; i <= Math.sqrt(a); i++) {
+                    if (a % i === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('T3').value = isPrime ? "Prime" : "Not Prime";
+        };
+    </script>
+</body>
+</html>
