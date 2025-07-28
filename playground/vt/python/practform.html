@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+    <link rel="stylesheet" href="practform.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul style="list-style: none; display: flex; gap: 80px; padding: 0; margin: 0;">
+            <li> <img src="https://static.vecteezy.com/system/resources/previews/021/272/478/original/isometric-flat-3d-illustration-concept-of-man-filling-registration-form-on-screen-free-vector.jpg" alt="logo "></li>
+            <li><strong>Website Name</strong></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+    <hr>
+</header>
+
+<div>
+
+</div>
+    <form action=".action">
+        <label for="name" class="w-10 bg">Name:</label>
+        <input type="text" id = "name" name = "name1" placeholder="Enter your name">
+        <br>
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address">
+        <br>
+        <label for="city">City:</label>
+        <input type="text" id = "city" placeholder="Enter your city">
+        <br>
+        <label>Gender:</label>
+        <input type="radio" id="male"  >
+        <label for="male">Male</label>
+        <input type="radio" id="female">
+        <label for="female">Female</label>
+        <br>
+        <label for="payment">Payment Method:</label>
+        <select name="payment" id="payment">
+            <option value="spm" selected>select a payment method</option>
+            <option value="cc">credit card</option>
+            <option value="gp">google pay</option>
+            <option value="pp">paypal</option>
+            <option value="other">other</option>
+        </select>
+        <br>
+
+    </form>
+</body>
+</html>
