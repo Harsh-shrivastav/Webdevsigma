@@ -3,11 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sample</title>
+    <title>User Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <p>welcome to my first django app</p>
-    <p>made with &hearts;</p>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-700 shadow-lg flex items-center justify-between p-4 border-b-2 border-red-800">
+        <div class="flex items-center space-x-4">
+            <div class="h-12 w-12 bg-white rounded-full flex items-center justify-center font-bold text-red-600 shadow-lg">
+                UM
+            </div>
+            <span class="text-2xl font-bold text-white">User Management</span>
+        </div>
+        <nav class="flex space-x-6">
+            <a href="/" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">Home</a>
+            <a href="/home/" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">Register</a>
+            <a href="/show_form/" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">User List</a>
+        </nav>
+    </header>
+
+    <!-- Background Section -->
+    <div class="relative min-h-screen bg-cover bg-center bg-fixed" style="background-image: url('/static/lmc.jpg'); background-color: #1f2937;">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 px-4 py-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Hero Section -->
+                <div class="text-center mb-12">
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-3xl p-12 mb-8 border-2 border-white border-opacity-30">
+                        <h1 class="text-5xl font-bold text-white mb-4 drop-shadow-lg">Welcome to User Management</h1>
+                        <p class="text-xl text-gray-100 mb-6">A modern and efficient way to manage user data with Django</p>
+                        <a href="/home/" 
+                           class="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-red-700 hover:to-red-800 transform hover:scale-105 transition shadow-lg">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-25 transition transform hover:scale-105 border-2 border-white border-opacity-30">
+                        <div class="text-5xl mb-4">📝</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Easy Registration</h3>
+                        <p class="text-gray-100">Quick and simple user registration process.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-25 transition transform hover:scale-105 border-2 border-white border-opacity-30">
+                        <div class="text-5xl mb-4">👥</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">User Management</h3>
+                        <p class="text-gray-100">Efficiently manage all your users in one place.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-25 transition transform hover:scale-105 border-2 border-white border-opacity-30">
+                        <div class="text-5xl mb-4">🔄</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Update Profiles</h3>
+                        <p class="text-gray-100">Easily update user information.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-25 transition transform hover:scale-105 border-2 border-white border-opacity-30">
+                        <div class="text-5xl mb-4">🔒</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Secure Storage</h3>
+                        <p class="text-gray-100">All data is securely stored and protected.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mt-12">
+                    <div class="bg-white bg-opacity-15 backdrop-blur-md rounded-2xl p-8 border-2 border-white border-opacity-30">
+                        <h2 class="text-3xl font-bold text-white text-center mb-6">Quick Actions</h2>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="/home/" 
+                               class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg font-medium hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 shadow-lg">
+                                📝 Register New User
+                            </a>
+                            <a href="/show_form/" 
+                               class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 shadow-lg">
+                                👁️ View All Users
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Image Carousel Section
+    <div class="flex justify-center items-center py-8 bg-white bg-opacity-10 backdrop-blur-md">
+        <div class="w-full max-w-4xl rounded-2xl overflow-hidden shadow-lg">
+            <div class="relative">
+                Carousel Images
+                <div id="carousel-track" class="flex transition-transform duration-700 ease-in-out w-full h-64 overflow-hidden">
+                    <img src="/static/logo.jpg" alt="Logo 1" class="carousel-img flex-shrink-0 w-full h-64 object-cover" />
+                    <img src="/static/lmc.jpg" alt="Image 2" class="carousel-img flex-shrink-0 w-full h-64 object-cover" />
+                    <img src="/static/2.jpeg" alt="Image 3" class="carousel-img flex-shrink-0 w-full h-64 object-cover" />
+                    <img src="/static/3.webp" alt="Image 4" class="carousel-img flex-shrink-0 w-full h-64 object-cover" />
+                </div>
+                Carousel Controls
+                <button id="carousel-prev" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-40 hover:bg-opacity-70 text-red-700 rounded-full p-2 shadow-lg z-10">
+                    &#8592;
+                </button>
+                <button id="carousel-next" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-40 hover:bg-opacity-70 text-red-700 rounded-full p-2 shadow-lg z-10">
+                    &#8594;
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        Carousel logic
+        const carouselTrack = document.getElementById('carousel-track');
+        const carouselImages = carouselTrack.querySelectorAll('.carousel-img');
+        let carouselIndex = 0;
+        function updateCarousel() {
+            carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
+        }
+        document.getElementById('carousel-prev').onclick = () => {
+            carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
+            updateCarousel();
+        };
+        document.getElementById('carousel-next').onclick = () => {
+            carouselIndex = (carouselIndex + 1) % carouselImages.length;
+            updateCarousel();
+        };
+        setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % carouselImages.length;
+            updateCarousel();
+        }, 2500);
+        updateCarousel();
+    </script>
+        </div>
+    </div>
+    <script>
+        const slider = document.getElementById('slider-row');
+        const images = slider.querySelectorAll('.slider-img');
+        let current = 0;
+        function updateSlider() {
+            slider.style.transform = `translateX(-${current * 25}%)`;
+        }
+        document.getElementById('prev').onclick = () => {
+            current = (current - 1 + images.length) % images.length;
+            updateSlider();
+        };
+        document.getElementById('next').onclick = () => {
+            current = (current + 1) % images.length;
+            updateSlider();
+        };
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            updateSlider();
+        }, 2000);
+        updateSlider();
+    </script> -->
+    <!-- Footer -->
+     <!-- swipper image slider  -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center">image slider</h2>
+        <!-- swiper container -->
+        <div class="swiper mySwiper relative">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide ">
+                    <img src="/static/1.webp" alt="Image 1" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/2.jpeg" alt="Image 2" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/3.webp" alt="Image 3" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/4.webp" alt="Image 4" class="w-full h-auto rounded shadow" />
+                </div>
+                 <div class="swiper-slide">
+                    <img src="/static/1.webp" alt="Image 1" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/2.jpeg" alt="Image 2" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/3.webp" alt="Image 3" class="w-full h-auto rounded shadow" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="/static/4.webp" alt="Image 4" class="w-full h-auto rounded shadow" />
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- pagianation -->
+            <div class="swiper-pagination -mb-3"></div>
+        </div>
+        </div>
+        <div class="swiper-pagination">
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 4,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false 
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            }
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+    });
+    </script>
+
+    <footer class="bg-gradient-to-r from-red-600 to-red-700 text-white text-center py-4 shadow-lg">
+        <p class="flex items-center justify-center space-x-2">
+            <span>Made with Django & Tailwind CSS</span>
+            <svg class="w-5 h-5 text-red-300 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+            </svg>
+        </p>
+    </footer>
 </body>
 </html>

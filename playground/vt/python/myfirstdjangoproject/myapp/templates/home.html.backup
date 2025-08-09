@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <style>
+        :root {
+            --primary-red: #e63946;
+            --light-red: #ff6b6b;
+            --dark-red: #d00000;
+            --white: #f1faee;
+            --off-white: #f8f9fa;
+            --glass-color: rgba(240, 240, 245, 0.15);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+            --glass-blur: blur(15px);
+            --text-color: #333;
+            --border-radius: 16px;
+            --accent-color: rgba(230, 57, 70, 0.85);
+            --dark-overlay: rgba(60, 60, 70, 0.3);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: url("{% static 'lmc.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(1px);
+            background-color: var(--dark-overlay);
+            z-index: -1;
+        }
+        
+        .header {
+            background: var(--primary-red);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .navbar {
+            background: rgba(230, 230, 240, 0.4);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: var(--glass-border);
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar a {
+            color: var(--primary-red);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(240, 240, 245, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+        }
+        
+        .navbar a:hover {
+            background: var(--primary-red);
+            color: white;
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+            z-index: 1;
+        }
+        
+        .content-section {
+            background: rgba(235, 235, 240, 0.5);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            color: var(--text-color);
+        }
+        
+        .content-section h2 {
+            color: var(--primary-red);
+            margin-top: 0;
+            font-size: 2rem;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(230, 57, 70, 0.2);
+            padding-bottom: 10px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-section p {
+            font-weight: 600;
+            color: #111111;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: rgba(230, 230, 240, 0.5);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(230, 57, 70, 0.2);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--light-red));
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.2);
+            border-color: var(--primary-red);
+        }
+        
+        .feature-card:hover::after {
+            transform: translateY(0);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-red);
+            margin-top: 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .feature-card p {
+            color: #111111;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-red);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 30px;
+            margin-top: 1.2rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .btn:hover {
+            background: var(--dark-red);
+            box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            background: var(--primary-red);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-top: var(--glass-border);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 0 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>User Management System</h1>
+        <p>A simple Django application to manage user profiles</p>
+    </div>
+    
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'index' %}">Register</a></li>
+            <li><a href="{% url 'show_form' %}">User List</a></li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2>Welcome to the User Management System</h2>
+            <p>This application allows you to perform basic CRUD operations on user profiles:</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Create Users</h3>
+                    <p>Add new users to the system with username, email, and password.</p>
+                    <a href="{% url 'index' %}" class="btn">Register Now</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>View Users</h3>
+                    <p>See all users in a clean, organized table format.</p>
+                    <a href="{% url 'show_form' %}" class="btn">View Users</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Update Users</h3>
+                    <p>Modify existing user information as needed.</p>
+                    <a href="{% url 'show_form' %}" class="btn">Manage Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>made with &hearts;</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Shop</title>
+    <!-- Tailwind CSS CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<!-- Order Modal (hidden by default) -->
+<div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mx-auto relative">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">Place Your Order</h2>
+        <form action="" id="orderForm" class="space-y-4">
+            <input type="text" placeholder="Your Name" name="name" class="w-full border px-4 py-2 rounded" required>
+            <input type="email" placeholder="Your Email" name="email" class="w-full border px-4 py-2 rounded" required>
+            <input type="tel" placeholder="Your Phone Number" name="phone" class="w-full border px-4 py-2 rounded" required>
+            <textarea placeholder="Your Address" name="address" class="w-full border px-4 py-2 rounded" required></textarea>
+            <input type="number" placeholder="Quantity" name="quantity" class="w-full border px-4 py-2 rounded" required>
+            <div class="flex justify-between pt-4">
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Place Order</button>
+                <button type="button" class="text-gray-600 hover:text-gray-800" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Menu Selection -->
+<section class="max-w-6xl mx-auto py-12 px-8">
+    <h2 class="text-4xl font-bold text-center mb-10 text-gray-800 capitalize">Our Menu</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Samosa Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://i1.wp.com/vegecravings.com/wp-content/uploads/2017/03/samosa-recipe-step-by-step-instructions.jpg?fit=1801%2C1717&ssl=1" alt="samosa" class="w-full h-48 object-cover" style="height:192px; width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Samosa</h3>
+                    <p class="text-gray-600 mb-4">Delicious potato-filled pastries, deep-fried to golden perfection.</p>
+                    <span class="text-xl font-bold text-gray-800">20 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Samosa', 20)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Paneer Tikka Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.cookwithmanali.com/wp-content/uploads/2015/07/Restaurant-Style-Recipe-Paneer-Tikka-500x500.jpg" alt="paneer tikka" class="w-full h-48 object-cover" style="height:192px; width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Paneer Tikka</h3>
+                    <p class="text-gray-600 mb-4">Grilled paneer cubes marinated in spicy yogurt and served with chutney.</p>
+                    <span class="text-xl font-bold text-gray-800">120 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Paneer Tikka', 120)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Dosa Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2021/07/dosa-recipe-1.jpg" alt="dosa" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Dosa</h3>
+                    <p class="text-gray-600 mb-4">Crispy South Indian crepe made from fermented rice and lentil batter.</p>
+                    <span class="text-xl font-bold text-gray-800">60 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Dosa', 60)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Pav Bhaji Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2021/04/pav-bhaji-recipe-1.jpg" alt="pav bhaji" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Pav Bhaji</h3>
+                    <p class="text-gray-600 mb-4">Spicy mashed vegetable curry served with buttered bread rolls.</p>
+                    <span class="text-xl font-bold text-gray-800">70 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Pav Bhaji', 70)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Idli Sambhar Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.mapsofindia.com/ci-moi-images/my-india/Idli-Sambhar.jpg" alt="idli sambhar" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Idli Sambhar</h3>
+                    <p class="text-gray-600 mb-4">Steamed rice cakes served with spicy lentil soup and coconut chutney.</p>
+                    <span class="text-xl font-bold text-gray-800">50 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Idli Sambhar', 50)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Vada Pav Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://news24online.com/wp-content/uploads/2023/01/Vada-Pav.jpg" alt="vada pav" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Vada Pav</h3>
+                    <p class="text-gray-600 mb-4">Spicy potato fritter sandwiched in a bun with chutneys.</p>
+                    <span class="text-xl font-bold text-gray-800">25 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Vada Pav', 25)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Rajma Chawal Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.scrolldroll.com/wp-content/uploads/2022/02/Rajma_Chawal_most-popular-indian-food-scaled.jpg" alt="rajma chawal" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Rajma Chawal</h3>
+                    <p class="text-gray-600 mb-4">Red kidney beans curry served with steamed rice.</p>
+                    <span class="text-xl font-bold text-gray-800">90 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Rajma Chawal', 90)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Gulab Jamun Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://recipes.net/wp-content/uploads/2023/05/gulab-jamun-recipe_9fb159dc2674f395436a64666227c988-768x768.jpeg" alt="gulab jamun" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Gulab Jamun</h3>
+                    <p class="text-gray-600 mb-4">Soft milk-solid balls soaked in rose-flavored sugar syrup.</p>
+                    <span class="text-xl font-bold text-gray-800">40 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Gulab Jamun', 40)">Order Now</button>
+            </div>
+        </div>
+
+        <!-- Chole Bhature Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://2.bp.blogspot.com/-OU_L_dlS_G0/Wx9rVpMKeVI/AAAAAAAAAEE/lL6pyCPBVoQkBxbpYZg9wRt6-Lce51C7ACLcBGAs/s1600/imperial%2Binn.jpg" alt="chole bhature" class="w-full h-48 object-cover" style="height:192px; width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Chole Bhature</h3>
+                    <p class="text-gray-600 mb-4">Spicy chickpeas served with fluffy fried bread, a North Indian classic.</p>
+                    <span class="text-xl font-bold text-gray-800">80 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Chole Bhature', 80)">Order Now</button>
+            </div>
+        </div>
+    <!-- halwa -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col">
+            <img src="https://www.funfoodfrolic.com/wp-content/uploads/2020/10/Suji-Halwa-Thumbnail-1024x1024.jpg" alt="halwa" class="w-full h-48 object-cover md:h-56" style="width:100%;">
+            <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Halwa</h3>
+                    <p class="text-gray-600 mb-4">A sweet dish made from semolina, sugar, and ghee, garnished with nuts.</p>
+                    <span class="text-xl font-bold text-gray-800">30 rs/-</span>
+                </div>
+                <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onclick="openModal('Halwa', 30)">Order Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+function openModal(item, price) {
+    document.getElementById('orderModal').classList.remove('hidden');
+}
+function closeModal() {
+    document.getElementById('orderModal').classList.add('hidden');
+}
+</script>
+
+</body>
+</html>

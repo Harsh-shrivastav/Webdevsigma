@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-700 shadow-lg flex items-center justify-between p-4 border-b-2 border-red-800">
+        <div class="flex items-center space-x-4">
+            <div class="h-12 w-12 bg-white rounded-full flex items-center justify-center font-bold text-red-600 shadow-lg">
+                UM
+            </div>
+            <span class="text-2xl font-bold text-white">User Management</span>
+        </div>
+        <nav class="flex space-x-6">
+            <a href="{% url 'index' %}" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">Home</a>
+            <a href="{% url 'home' %}" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">Register</a>
+            <a href="{% url 'show_form' %}" class="text-white hover:text-red-200 font-medium px-3 py-2 rounded bg-white bg-opacity-20 hover:bg-opacity-30 transition">User List</a>
+        </nav>
+    </header>
+
+    <!-- Background Section -->
+    <div class="bg-[url('{% static 'lmc.jpg' %)')] relative min-h-screen bg-cover bg-center bg-fixed">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 px-4 py-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Hero Section -->
+                <div class="text-center mb-12">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-3xl p-12 mb-8 border border-white border-opacity-20">
+                        <h1 class="text-5xl font-bold text-white mb-4 drop-shadow-lg">Welcome to User Management</h1>
+                        <p class="text-xl text-gray-200 mb-6">A modern and efficient way to manage user data with Django</p>
+                        <a href="{% url 'home' %}" 
+                           class="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-red-700 hover:to-red-800 transform hover:scale-105 transition shadow-lg">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-20 transition transform hover:scale-105 border border-white border-opacity-20">
+                        <div class="text-5xl mb-4">📝</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Easy Registration</h3>
+                        <p class="text-gray-200">Quick and simple user registration process.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-20 transition transform hover:scale-105 border border-white border-opacity-20">
+                        <div class="text-5xl mb-4">👥</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">User Management</h3>
+                        <p class="text-gray-200">Efficiently manage all your users in one place.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-20 transition transform hover:scale-105 border border-white border-opacity-20">
+                        <div class="text-5xl mb-4">🔄</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Update Profiles</h3>
+                        <p class="text-gray-200">Easily update user information.</p>
+                    </div>
+
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6 text-center hover:bg-opacity-20 transition transform hover:scale-105 border border-white border-opacity-20">
+                        <div class="text-5xl mb-4">🔒</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Secure Storage</h3>
+                        <p class="text-gray-200">All data is securely stored and protected.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="mt-12">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-8 border border-white border-opacity-20">
+                        <h2 class="text-3xl font-bold text-white text-center mb-6">Quick Actions</h2>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <a href="{% url 'home' %}" 
+                               class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg font-medium hover:from-green-700 hover:to-green-800 transition transform hover:scale-105 shadow-lg">
+                                📝 Register New User
+                            </a>
+                            <a href="{% url 'show_form' %}" 
+                               class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition transform hover:scale-105 shadow-lg">
+                                👁️ View All Users
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-red-600 to-red-700 text-white text-center py-4 shadow-lg">
+        <p class="flex items-center justify-center space-x-2">
+            <span>Made with</span>
+            <svg class="w-5 h-5 text-red-300 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+            </svg>
+        </p>
+    </footer>
+</body>
+</html>
