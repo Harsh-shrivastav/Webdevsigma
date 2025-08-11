@@ -90,11 +90,30 @@
       <br>
       <hr>
       <!-- sol2 -->
-      <form action=".action">
-         <label for="name">Name</label>
-         <input type="text" id = "name">
-         
-         <button type="button"></button>
-      </form>
+<form action="/action">
+   <label for="username">Username:</label>
+   <input type="text" name="username" id="username">
+   <br>
+   <label for="">sex:</label>
+   <input type="radio" id="gender" name="gender" value="male">
+   <label for="gender">Male</label>
+   <input type="radio" id="gender" name="gender" value="female">
+   <label for="gender">Female</label>
+   <br>
+   <label for="country">Country:</label>
+   <select name="country" id="country">
+      <option value="india">India</option>
+      <option value="usa">USA</option>
+      <option value="uk">UK</option>
+   </select>
+   <br>
+   <label for="message">Message: </label>
+   <textarea name="message" id="message"></textarea>
+   <br>
+   <label for="subscribe">Subscribe:</label>
+   <input type="checkbox" name="subscribe" id="subscribe">
+   <br>
+   <button type="submit">Submit</button>
+</form>
 </body>
 </html>
